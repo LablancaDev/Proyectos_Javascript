@@ -2,6 +2,7 @@ const pantalla = document.querySelector(".pantalla");
 const botones = document.querySelectorAll(".btn");//seleccionamos todos los botones
 
 //Nota: con querySelectorAll obtenemos un array de todos los botones
+//Usaremos textContent pero también podríamos usar innerText
 botones.forEach(boton => {
     boton.addEventListener("click", () =>{
         //Prueba, console.log(boton.textContent);
@@ -27,7 +28,7 @@ botones.forEach(boton => {
         //botón =
         if(boton.id === "igual"){
             try{//Mediante un bloque try,catch manejamos los errores en tiempo de ejecución cuando se introduzcan datos erroneos
-            pantalla.textContent = eval(pantalla.textContent);//La función eval evalua el conjunto de strings que tiene operaciones matemáticas en nuestra pantalla (no en formato número)
+            pantalla.textContent = eval(pantalla.textContent);//La función eval de Javascript evalua el conjunto de strings que tiene operaciones matemáticas en nuestra pantalla (no en formato número)
             }catch{
                 pantalla.textContent = "Error!"
             }
