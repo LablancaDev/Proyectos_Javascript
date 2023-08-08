@@ -15,7 +15,7 @@ function calcular(){
 let boton2 = document.getElementById("but2");
 let result2 = document.getElementById("result2");
 
-let vehiculos = ["coche","moto","bici"];
+let vehiculos = ["coche","moto","bici", 3 , true];//podemos agregar diferentes valores en un Array
 
 boton2.addEventListener("click",calcular2);
 function calcular2(){
@@ -24,4 +24,6 @@ function calcular2(){
     });
 
     }
+
+//Cada vez que recolectamos información o llamamos a una API la respuesta de esa API es en formato JSON  
 
