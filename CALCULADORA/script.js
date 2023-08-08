@@ -1,3 +1,4 @@
+//CALCULADORA
 const pantalla = document.querySelector(".pantalla");
 const botones = document.querySelectorAll(".btn");//seleccionamos todos los botones
 
@@ -43,4 +44,21 @@ botones.forEach(boton => {
         }
         
     })
+});
+
+
+//BOTON DARK MODE CALCULADORA
+const boton = document.getElementById("darkMode");
+const calculadora = document.querySelector(".calculadora");
+
+
+
+boton.addEventListener("click", ()=>{
+    //cambio color calculadora
+   calculadora.classList.toggle("onclick");// si la clase onclick está presente la elimina, de lo contrario la añade.
+    //cambio color boton
+   darkMode.classList.toggle("onclick"); 
+   
+
+
 });
