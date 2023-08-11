@@ -36,7 +36,11 @@ body{
     position: relative;
 }
 
-
+h2{
+    font-size: 1.2em;
+    margin-top: 1.2em;
+    color: rgb(196, 38, 38);
+}
 
 /* Title */
 
@@ -88,7 +92,6 @@ body{
     height: .6em; 
     width: 12em;
     border: 2px solid rgb(0, 0, 0);
-    margin-bottom: 2.3em;
     border-radius: 4px;
     
 }

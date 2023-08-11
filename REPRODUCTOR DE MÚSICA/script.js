@@ -35,10 +35,19 @@ const title = document.getElementById("title");
 const play = document.getElementById("play");
 const prev = document.getElementById("prev");
 const next = document.getElementById("next");
+const progress = document.getElementById("progress");
+const progressContainer = document.getElementById("progress-container")
+
+progressContainer.addEventListener("click", setProgress)
+
+
+//Escuchar el elemento audio
+
+audio.addEventListener("timeupdate", updateProgress);
 
 //Escuchar clicks en los controles
 
-play.addEventListener("click", ()=> {//paused es una propiedad de Javascript
+play.addEventListener("click", () => {//paused es una propiedad de Javascript
     if(audio.paused){//cuando le doy al botón play, si está pausado el audio, lo reproduzco con playSong()
         playSong();
     }else{
@@ -46,8 +55,8 @@ play.addEventListener("click", ()=> {//paused es una propiedad de Javascript
     }
 })
 
-next.addEventListener("click", () =>nextSong())
-next.addEventListener("prev", () =>prevSong())
+next.addEventListener("click", () => nextSong())
+prev.addEventListener("click", () => prevSong())
 
 
 // Cargar canciones y Mostrar listado
@@ -86,12 +95,31 @@ function loadSong(songIndex){//Cuando cargo una canción, la reproduzco
         actualSong = songIndex
         // Añadimos los audios
         audio.src = "./audio/" + songList[songIndex].file;  //estamos buscando el indice que referencia al objeto del array que contiene el archivo file con la ruta a el audio, para poder ponerselo al elemento audio  (queremos cambiar el src (la ruta) del elemento audio par aempezar la canción)
-        audio.play()
-        updateControls()
+        playSong()//CAMBIAR playSong()
         changeCover(songIndex); //cuando finaliza el código de la función loadSong(), se llamará a la función changeCover()
         changeSongTitle(songIndex);//llamada a la función  changeSongTitle() que cambia las imágenes de cada audio
     }
 }
+
+//Actualizar barra de progreso de la canción
+
+function updateProgress(event){
+    //Total y el actual
+    const {duration, currentTime} = event.srcElement
+    const percent = (currentTime / duration) * 100
+    progress.style.width = percent + "%" 
+
+}
+
+// Hacer la barra de progreso clicable
+function setProgress(event) {
+    const totalWidth = this.offsetWidth
+    const progressWidth = event.offsetX
+    const current = (progressWidth / totalWidth) * audio.duration
+    audio.currentTime = current
+}
+
+
 
 //Actualizar controles
 
@@ -109,7 +137,7 @@ function updateControls(){
 
 function playSong(){/*cada vez que doy play, actualizo los controles(es decir, llamo a la función updateControls();)*/
     if (actualSong !== null) {
-    audio.play;
+    audio.play();
     updateControls();
     }
 }
@@ -117,7 +145,7 @@ function playSong(){/*cada vez que doy play, actualizo los controles(es decir, l
 //Pausar canción
 
 function pauseSong(){/*cada vez que doy pause, actualizo los controles(es decir, llamo a la función updateControls();)*/
-    audio.pause;
+    audio.pause();
     updateControls();
 }
 
